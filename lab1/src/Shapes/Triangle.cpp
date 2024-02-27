@@ -1,5 +1,5 @@
-#include "Triangle.h"
-#include "Exception.h"
+#include "include/Shapes/Triangle.h"
+#include "include/Exception.h"
 
 Triangle::Triangle(const std::string& name, const Point& vertex1, const Point& vertex2, const Point& vertex3)
     : Shape(name), vertex1(vertex1), vertex2(vertex2), vertex3(vertex3)

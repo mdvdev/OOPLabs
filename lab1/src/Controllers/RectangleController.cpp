@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "RectangleController.h"
-#include "Rectangle.h"
+#include "include/Controllers/RectangleController.h"
+#include "include/Shapes/Rectangle.h"
 
 void RectangleController::printType() const
 {

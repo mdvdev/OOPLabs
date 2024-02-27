@@ -1,8 +1,8 @@
-#include "ShapeControllerFactory.h"
-#include "CircleController.h"
-#include "RectangleController.h"
-#include "TriangleController.h"
-#include "PolygonController.h"
+#include "include/ShapeControllerFactory.h"
+#include "include/Controllers/CircleController.h"
+#include "include/Controllers/RectangleController.h"
+#include "include/Controllers/TriangleController.h"
+#include "include/Controllers/PolygonController.h"
 
 std::map<ShapeType, std::unique_ptr<ShapeController>> ShapeControllerFactory::controllers = {
     { ShapeType::Circle, std::unique_ptr<ShapeController>(new CircleController) },

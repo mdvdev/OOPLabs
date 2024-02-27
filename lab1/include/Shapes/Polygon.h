@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Shape.h"
-#include "Point.h"
+#include "include/Point.h"
 
 class Polygon : public Shape {
 public:

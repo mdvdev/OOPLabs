@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "PolygonController.h"
-#include "Polygon.h"
+#include "include/Controllers/PolygonController.h"
+#include "include/Shapes/Polygon.h"
 
 void PolygonController::printType() const
 {

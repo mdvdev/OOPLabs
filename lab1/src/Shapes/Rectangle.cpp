@@ -1,5 +1,5 @@
-#include "Rectangle.h"
-#include "Exception.h"
+#include "include/Shapes/Rectangle.h"
+#include "include/Exception.h"
 
 Rectangle::Rectangle(const std::string& name, const Point& upperLeftAngle, const Point& bottomRightAngle)
     : Shape(name), upperLeftAngle(upperLeftAngle), bottomRightAngle(bottomRightAngle)

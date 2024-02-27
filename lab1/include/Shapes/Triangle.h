@@ -2,7 +2,7 @@
 #define TRIANGLE_H
 
 #include "Shape.h"
-#include "Point.h"
+#include "include/Point.h"
 
 class Triangle : public Shape {
 public:

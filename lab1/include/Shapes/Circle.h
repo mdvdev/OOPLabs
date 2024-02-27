@@ -2,7 +2,7 @@
 #define CIRCLE_H
 
 #include "Shape.h"
-#include "Point.h"
+#include "include/Point.h"
 
 class Circle : public Shape {
 public:
