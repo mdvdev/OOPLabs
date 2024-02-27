@@ -4,13 +4,11 @@
 #include "Exception.h"
 
 Circle::Circle(const std::string& name, const Point& center, float radius)
-    : Shape(name)
+    : Shape(name), center(center), radius(radius)
 {
     if (!isValidParams(center, radius)) {
         throw InvalidParams();
     }
-    this->center = center;
-    this->radius = radius;
 }
 
 ShapeType Circle::getType() const
