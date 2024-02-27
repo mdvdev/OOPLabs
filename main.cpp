@@ -1,8 +1,7 @@
-#include <QCoreApplication>
+#include "InputHandler.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
-
-    return a.exec();
+    InputHandler inputHandler;
+    return inputHandler.start();
 }
