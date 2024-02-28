@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "include/Controllers/CircleController.h"
-#include "include/Shapes/Circle.h"
+#include "CircleController.h"
+#include "Circle.h"
 
 void CircleController::printType() const
 {

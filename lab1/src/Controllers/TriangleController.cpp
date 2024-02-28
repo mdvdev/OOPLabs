@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "include/Controllers/TriangleController.h"
-#include "include/Shapes/Triangle.h"
+#include "TriangleController.h"
+#include "Triangle.h"
 
 void TriangleController::printType() const
 {

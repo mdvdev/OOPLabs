@@ -4,7 +4,7 @@
 #include <map>
 #include <memory>
 
-#include "include/Controllers/ShapeController.h"
+#include "ShapeController.h"
 
 class ShapeControllerFactory {
 public:

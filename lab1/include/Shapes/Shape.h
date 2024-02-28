@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "include/ShapeType.h"
+#include "ShapeType.h"
 
 class Shape {
 public:

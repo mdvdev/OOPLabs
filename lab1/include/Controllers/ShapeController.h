@@ -1,7 +1,7 @@
 #ifndef SHAPECONTROLLER_H
 #define SHAPECONTROLLER_H
 
-#include "include/Shapes/Shape.h"
+#include "Shape.h"
 
 class ShapeController {
 public:
