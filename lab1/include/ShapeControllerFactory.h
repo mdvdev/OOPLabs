@@ -2,16 +2,16 @@
 #define SHAPECONTROLLERFACTORY_H
 
 #include <map>
-#include <memory>
 
 #include "ShapeController.h"
 
+// remove
 class ShapeControllerFactory {
 public:
     static ShapeController& createShapeController(ShapeType type);
 
 private:
-    static std::map<ShapeType, std::unique_ptr<ShapeController>> controllers;
+    static std::map<ShapeType, ShapeController*> controllers;
 };
 
 #endif // SHAPECONTROLLERFACTORY_H
