@@ -1,19 +1,14 @@
-#include <math.h>
+#include <cmath>
 
-#include "include/Shapes/Circle.h"
-#include "include/Exception.h"
+#include "Circle.h"
+#include "InvalidParams.h"
 
 Circle::Circle(const std::string& name, const Point& center, float radius)
     : Shape(name), center(center), radius(radius)
 {
     if (!isValidParams(center, radius)) {
-        throw InvalidParams();
+        throw InvalidParams("Error: invalid parameters");
     }
-}
-
-ShapeType Circle::getType() const
-{
-    return ShapeType::Circle;
 }
 
 float Circle::getPerimeter() const
@@ -24,4 +19,23 @@ float Circle::getPerimeter() const
 bool Circle::isValidParams(const Point& center, float radius) const
 {
     return radius > 0;
+}
+
+std::string Circle::toString() const
+{
+    return "Circle{"
+           "name=" + name +
+           ", center=" + center.toString() +
+           ", radius=" + std::to_string(radius) +
+           "}";
+}
+
+Point Circle::getCenter() const
+{
+    return center;
+}
+
+float Circle::getRadius() const
+{
+    return radius;
 }

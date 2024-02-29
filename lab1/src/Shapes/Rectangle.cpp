@@ -1,39 +1,43 @@
-#include "include/Shapes/Rectangle.h"
-#include "include/Exception.h"
+#include "Rectangle.h"
+#include "InvalidParams.h"
 
-Rectangle::Rectangle(const std::string& name, const Point& upperLeftAngle, const Point& bottomRightAngle)
-    : Shape(name), upperLeftAngle(upperLeftAngle), bottomRightAngle(bottomRightAngle)
+Rectangle::Rectangle(const std::string& name, const Point& upperLeftPoint, const Point& bottomRightAngle)
+    : Shape(name), upperLeftPoint(upperLeftPoint), bottomRightPoint(bottomRightAngle)
 {
-    if (!isValidParams(upperLeftAngle, bottomRightAngle)) {
-        throw InvalidParams();
+    if (!isValidParams(upperLeftPoint, bottomRightAngle)) {
+        throw InvalidParams("Error: invalid parameters");
     }
 }
 
-bool Rectangle::isValidParams(const Point& upperLeftAngle, const Point& bottomRightAngle) const
+bool Rectangle::isValidParams(const Point& upperLeftPoint, const Point& bottomRightPoint) const
 {
-    return upperLeftAngle.getX() < bottomRightAngle.getX() &&
-           upperLeftAngle.getY() > bottomRightAngle.getY();
-}
-
-ShapeType Rectangle::getType() const
-{
-    return ShapeType::Rectangle;
+    return upperLeftPoint.getX() < bottomRightPoint.getX() &&
+           upperLeftPoint.getY() > bottomRightPoint.getY();
 }
 
 float Rectangle::getPerimeter() const
 {
-    Point point(upperLeftAngle.getX(), bottomRightAngle.getY());
-    float height = upperLeftAngle.getDistance(point);
-    float width = bottomRightAngle.getDistance(point);
+    Point point(upperLeftPoint.getX(), bottomRightPoint.getY());
+    float height = upperLeftPoint.getDistance(point);
+    float width = bottomRightPoint.getDistance(point);
     return 2 * (height + width);
 }
 
 Point Rectangle::getUpperLeftAngle() const
 {
-    return upperLeftAngle;
+    return upperLeftPoint;
 }
 
 Point Rectangle::getBottomRightAngle() const
 {
-    return bottomRightAngle;
+    return bottomRightPoint;
+}
+
+std::string Rectangle::toString() const
+{
+    return "Rectangle{"
+           "name=" + name +
+           ", upperLeftAngle=" + upperLeftPoint.toString() +
+           ", bottomRightAngle=" + bottomRightPoint.toString() +
+           "}";
 }

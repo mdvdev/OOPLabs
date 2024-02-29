@@ -10,8 +10,8 @@ class Polygon : public Shape {
 public:
     Polygon(const std::string& name, const std::vector<Point>& vertices);
 
-    virtual ShapeType getType() const override;
-    virtual float getPerimeter() const override;
+    std::string toString() const override;
+    float getPerimeter() const override;
 
     std::vector<Point> getVertices() const;
 

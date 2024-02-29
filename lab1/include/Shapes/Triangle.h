@@ -8,7 +8,7 @@ class Triangle : public Shape {
 public:
     Triangle(const std::string& name, const Point& vertex1, const Point& vertex2, const Point& vertex3);
 
-    ShapeType getType() const override;
+    std::string toString() const override;
     float getPerimeter() const override;
 
     Point getVertex1() const;

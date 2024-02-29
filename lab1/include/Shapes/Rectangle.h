@@ -6,19 +6,19 @@
 
 class Rectangle : public Shape {
 public:
-    Rectangle(const std::string& name, const Point& upperLeftAngle, const Point& bottomRightAngle);
+    Rectangle(const std::string& name, const Point& upperLeftPoint, const Point& bottomRightPoint);
 
-    ShapeType getType() const override;
+    std::string toString() const override;
     float getPerimeter() const override;
 
     Point getUpperLeftAngle() const;
     Point getBottomRightAngle() const;
 
 private:
-    bool isValidParams(const Point& upperLeftAngle, const Point& bottomRightAngle) const;
+    bool isValidParams(const Point& upperLeftPoint, const Point& bottomRightPoint) const;
 
-    Point upperLeftAngle;
-    Point bottomRightAngle;
+    Point upperLeftPoint;
+    Point bottomRightPoint;
 };
 
 #endif // RECTANGLE_H

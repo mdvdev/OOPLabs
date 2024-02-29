@@ -1,17 +1,12 @@
-#include "include/Shapes/Triangle.h"
-#include "include/Exception.h"
+#include "Triangle.h"
+#include "InvalidParams.h"
 
 Triangle::Triangle(const std::string& name, const Point& vertex1, const Point& vertex2, const Point& vertex3)
     : Shape(name), vertex1(vertex1), vertex2(vertex2), vertex3(vertex3)
 {
     if (!isValidParams(vertex1, vertex2, vertex3)) {
-        throw InvalidParams();
+        throw InvalidParams("Error: invalid parameters");
     }
-}
-
-ShapeType Triangle::getType() const
-{
-    return ShapeType::Triangle;
 }
 
 float Triangle::getPerimeter() const
@@ -49,4 +44,14 @@ bool Triangle::isValidTriangleInequality(const Point& vertex1, const Point& vert
     float b = vertex1.getDistance(vertex3);
     float c = vertex2.getDistance(vertex3);
     return c < a + b && b < a + c && a < b + c;
+}
+
+std::string Triangle::toString() const
+{
+    return "Triangle{"
+           "name=" + name +
+           ", vertex1=" + vertex1.toString() +
+           ", vertex2=" + vertex2.toString() +
+           ", vertex3=" + vertex3.toString() +
+           "}";
 }

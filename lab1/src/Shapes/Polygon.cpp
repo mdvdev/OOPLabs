@@ -1,13 +1,8 @@
-#include "include/Shapes/Polygon.h"
+#include "Polygon.h"
 
 Polygon::Polygon(const std::string& name, const std::vector<Point>& vertices)
     : Shape(name), vertices(vertices)
 {
-}
-
-ShapeType Polygon::getType() const
-{
-    return ShapeType::Polygon;
 }
 
 float Polygon::getPerimeter() const
@@ -23,6 +18,16 @@ float Polygon::getPerimeter() const
     return sum;
 }
 
+std::string Polygon::toString() const
+{
+    std::string string = "Polygon{name=";
+    string += name + ", ";
+    for (const auto& vertex : vertices) {
+        string += vertex.toString() + " ";
+    }
+    string += "}";
+    return string;
+}
 
 std::vector<Point> Polygon::getVertices() const
 {

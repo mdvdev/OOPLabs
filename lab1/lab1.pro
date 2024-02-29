@@ -7,23 +7,29 @@ CONFIG += c++17 cmdline
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        src/CommandProcessors/CommandProcessor1.cpp \
+        src/CommandProcessors/CommandProcessor2.cpp \
+        src/CommandProcessors/CommandProcessor3.cpp \
+        src/CommandProcessors/CommandProcessor4.cpp \
+        src/CommandProcessors/CommandProcessor5.cpp \
+        src/CommandProcessors/CommandProcessor6.cpp \
+        src/CommandProcessors/CommandProcessor7.cpp \
+        src/CommandProcessors/CommandProcessorFactory.cpp \
+        src/Shapes/ShapeFactory.cpp \
+        src/SyntaxError.cpp \
+        src/InvalidParams.cpp \
         src/Shapes/Circle.cpp \
-        src/Controllers/CircleController.cpp \
         src/InputHandler.cpp \
         src/Point.cpp \
         src/Shapes/Polygon.cpp \
-        src/Controllers/PolygonController.cpp \
         src/Shapes/Rectangle.cpp \
-        src/Controllers/RectangleController.cpp \
         src/Shapes/Shape.cpp \
-        src/ShapeControllerFactory.cpp \
         src/Shapes/Triangle.cpp \
-        src/Controllers/TriangleController.cpp \
         src/main.cpp
 
 INCLUDEPATH += $$PWD/include
 INCLUDEPATH += $$PWD/include/Shapes
-INCLUDEPATH += $$PWD/include/Controllers
+INCLUDEPATH += $$PWD/include/CommandProcessors
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,18 +37,22 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    include/SyntaxError.h \
+    include/InvalidParams.h \
     include/Shapes/Circle.h \
-    include/Controllers/CircleController.h \
-    include/Exception.h \
     include/InputHandler.h \
     include/Point.h \
     include/Shapes/Polygon.h \
-    include/Controllers/PolygonController.h \
     include/Shapes/Rectangle.h \
-    include/Controllers/RectangleController.h \
     include/Shapes/Shape.h \
-    include/Controllers/ShapeController.h \
-    include/ShapeControllerFactory.h \
-    include/ShapeType.h \
     include/Shapes/Triangle.h \
-    include/Controllers/TriangleController.h
+    include/CommandProcessors/CommandProcessorFactory.h \
+    include/CommandProcessors/CommandProcessor.h \
+    include/CommandProcessors/CommandProcessor1.h \
+    include/CommandProcessors/CommandProcessor2.h \
+    include/CommandProcessors/CommandProcessor3.h \
+    include/CommandProcessors/CommandProcessor4.h \
+    include/CommandProcessors/CommandProcessor5.h \
+    include/CommandProcessors/CommandProcessor6.h \
+    include/CommandProcessors/CommandProcessor7.h \
+    include/Shapes/ShapeFactory.h

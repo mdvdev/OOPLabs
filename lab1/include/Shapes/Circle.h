@@ -8,7 +8,7 @@ class Circle : public Shape {
 public:
     Circle(const std::string& name, const Point& center, float radius);
 
-    ShapeType getType() const override;
+    std::string toString() const override;
     float getPerimeter() const override;
 
     Point getCenter() const;
