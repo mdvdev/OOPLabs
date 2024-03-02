@@ -9,7 +9,7 @@
 
 class CommandProcessor1 : public CommandProcessor {
 public:
-    void process(InputHandler& inputHandler, std::istringstream& inputStream) override;
+    void process(InputHandler& inputHandler, std::istream& inputStream) override;
 
 private:
     Circle* createCircle(std::istringstream& inputStream);

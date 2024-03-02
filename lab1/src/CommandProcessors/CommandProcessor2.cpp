@@ -5,10 +5,10 @@
 #include "Shape.h"
 #include "InputHandler.h"
 
-void CommandProcessor2::process(InputHandler& inputHandler, std::istringstream& inputStream)
+void CommandProcessor2::process(InputHandler& inputHandler, std::istream& inputStream)
 {
     const std::vector<Shape*>& shapes = inputHandler.getShapes();
-    for (const auto& shape : shapes) {
-        std::cout << shape->toString() << std::endl;
+    for (size_t i = 0; i < shapes.size(); ++i) {
+        std::cout << i << " " << shapes[i]->toString() << std::endl;
     }
 }

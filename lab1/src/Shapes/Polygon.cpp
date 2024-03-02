@@ -33,3 +33,8 @@ std::vector<Point> Polygon::getVertices() const
 {
     return vertices;
 }
+
+std::string Polygon::getType() const
+{
+    return "Polygon";
+}

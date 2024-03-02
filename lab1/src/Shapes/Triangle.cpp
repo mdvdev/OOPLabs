@@ -55,3 +55,8 @@ std::string Triangle::toString() const
            ", vertex3=" + vertex3.toString() +
            "}";
 }
+
+std::string Triangle::getType() const
+{
+    return "Triangle";
+}

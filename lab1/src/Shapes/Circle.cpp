@@ -39,3 +39,8 @@ float Circle::getRadius() const
 {
     return radius;
 }
+
+std::string Circle::getType() const
+{
+    return "Circle";
+}

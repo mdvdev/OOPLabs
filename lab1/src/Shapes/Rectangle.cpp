@@ -41,3 +41,8 @@ std::string Rectangle::toString() const
            ", bottomRightAngle=" + bottomRightPoint.toString() +
            "}";
 }
+
+std::string Rectangle::getType() const
+{
+    return "Rectangle";
+}

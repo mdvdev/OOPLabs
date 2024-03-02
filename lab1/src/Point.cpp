@@ -57,7 +57,7 @@ std::istream& operator>>(std::istream& is, Point& point)
         std::getline(is, string, '/');
         float x = std::stof(string);
 
-        std::getline(is, string);
+        is >> string;
         float y = std::stof(string);
 
         point.setX(x);

@@ -7,9 +7,11 @@
 class Rectangle : public Shape {
 public:
     Rectangle(const std::string& name, const Point& upperLeftPoint, const Point& bottomRightPoint);
+    ~Rectangle() = default;
 
     std::string toString() const override;
     float getPerimeter() const override;
+    std::string getType() const override;
 
     Point getUpperLeftAngle() const;
     Point getBottomRightAngle() const;

@@ -7,7 +7,7 @@ class InputHandler;
 
 class CommandProcessor {
 public:
-    virtual void process(InputHandler& inputHandler, std::istringstream& inputStream) = 0;
+    virtual void process(InputHandler& inputHandler, std::istream& inputStream) = 0;
 };
 
 #endif // COMMANDPROCESSOR_H

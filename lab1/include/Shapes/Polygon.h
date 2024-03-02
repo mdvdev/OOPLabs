@@ -9,9 +9,11 @@
 class Polygon : public Shape {
 public:
     Polygon(const std::string& name, const std::vector<Point>& vertices);
+    ~Polygon() = default;
 
     std::string toString() const override;
     float getPerimeter() const override;
+    std::string getType() const override;
 
     std::vector<Point> getVertices() const;
 

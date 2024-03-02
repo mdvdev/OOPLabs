@@ -6,11 +6,12 @@
 class Shape {
 public:
     Shape(const std::string& name);
+    virtual ~Shape() = default;
 
     virtual std::string toString() const = 0;
     virtual float getPerimeter() const = 0;
+    virtual std::string getType() const = 0;
 
-    virtual ~Shape();
 
 protected:
     std::string name;

@@ -1,55 +1,52 @@
 #include <iostream>
+#include <limits>
 
 #include "CommandProcessor.h"
 #include "InputHandler.h"
 #include "SyntaxError.h"
 #include "InvalidParams.h"
+#include "EndOfFileException.h"
 
 int InputHandler::start()
 {
     int retCode = 0;
-    try {
-        // TODO how to exit from loop normally?
-        for (;;) {
-            std::string input = readInput(std::cin);
-            std::istringstream inputStream(input);
-            inputStream.exceptions(std::ios::failbit);
-            int opcode = getOpcode(inputStream);
+    for (;;) {
+        try {
+            int opcode = getOpcode(std::cin);
             // TODO convert factory to static method
             CommandProcessor* processor = factory.createCommandProcessor(opcode);
-            processor->process(*this, inputStream);
+            processor->process(*this, std::cin);
+        } catch (const SyntaxError& e) {
+            std::cout << e.what() << std::endl;
+            resetInputStream(std::cin);
+        } catch (const InvalidParams& e) {
+            std::cout << e.what() << std::endl;
+            resetInputStream(std::cin);
+        } catch (const EndOfFileException& e) {
+            std::cout << e.what() << std::endl;
+            break;
+        } catch (const std::exception& e) {
+            std::cout << "Unknown error type" << std::endl;
+            retCode = 1;
+            break;
         }
-    } catch (const SyntaxError& e) {
-        std::cout << e.what() << std::endl;
-        retCode = 1;
-    } catch (const InvalidParams& e) {
-        std::cout << e.what() << std::endl;
-        retCode = 1;
-    } catch (const std::exception& e) {
-        std::cout << "Unknown error type" << std::endl;
-        retCode = 1;
     }
+
     return retCode;
 }
 
-int InputHandler::getOpcode(std::istringstream& inputStream) const
+int InputHandler::getOpcode(std::istream& inputStream) const
 {
     int opcode;
-    inputStream >> opcode;
+    if (!(inputStream >> opcode)) {
+        if (inputStream.eof()) {
+            throw EndOfFileException("Bye!");
+        } else {
+            throw SyntaxError("Syntax error");
+        }
+    }
     return opcode;
 }
-
-std::string InputHandler::readInput(std::istream& stream) const
-{
-    try {
-        std::string input;
-        stream >> input;
-        return input;
-    } catch (const std::ios_base::failure& e) {
-        throw SyntaxError("Syntax error");
-    }
-}
-
 
 void InputHandler::addShape(Shape* shape)
 {
@@ -64,4 +61,15 @@ void InputHandler::removeShape(int index)
 const std::vector<Shape*>& InputHandler::getShapes() const
 {
     return shapes;
+}
+
+void InputHandler::setShapes(const std::vector<Shape*>& shapes)
+{
+    this->shapes = shapes;
+}
+
+void InputHandler::resetInputStream(std::istream& inputStream) const
+{
+    inputStream.clear();
+    inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

@@ -11,13 +11,13 @@ class Polygon;
 
 class ShapeFactory {
 public:
-    static Shape* createShape(const std::string& shapeType, std::istringstream& inputStream);
+    static Shape* createShape(const std::string& shapeType, std::istream& inputStream);
 
 private:
-    static Circle* createCircle(std::istringstream& inputStream);
-    static Rectangle* createRectangle(std::istringstream& inputStream);
-    static Triangle* createTriangle(std::istringstream& inputStream);
-    static Polygon* createPolygon(std::istringstream& inputStream);
+    static Circle* createCircle(std::istream& inputStream);
+    static Rectangle* createRectangle(std::istream& inputStream);
+    static Triangle* createTriangle(std::istream& inputStream);
+    static Polygon* createPolygon(std::istream& inputStream);
 };
 
 #endif // SHAPEFACTORY_H

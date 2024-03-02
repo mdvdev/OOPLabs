@@ -15,6 +15,7 @@ SOURCES += \
         src/CommandProcessors/CommandProcessor6.cpp \
         src/CommandProcessors/CommandProcessor7.cpp \
         src/CommandProcessors/CommandProcessorFactory.cpp \
+        src/EndOfFileException.cpp \
         src/Shapes/ShapeFactory.cpp \
         src/SyntaxError.cpp \
         src/InvalidParams.cpp \
@@ -55,4 +56,5 @@ HEADERS += \
     include/CommandProcessors/CommandProcessor5.h \
     include/CommandProcessors/CommandProcessor6.h \
     include/CommandProcessors/CommandProcessor7.h \
-    include/Shapes/ShapeFactory.h
+    include/Shapes/ShapeFactory.h \
+    include/EndOfFileException.h

@@ -1,3 +1,16 @@
-#include "CommandProcessor5.h"
+#include <vector>
+#include <algorithm>
 
-CommandProcessor5::CommandProcessor5() {}
+#include "CommandProcessor5.h"
+#include "Shape.h"
+#include "InputHandler.h"
+
+void CommandProcessor5::process(InputHandler& inputHandler, std::istream& inputStream)
+{
+    std::vector<Shape*> shapes = inputHandler.getShapes();
+    std::sort(shapes.begin(), shapes.end(), [](const Shape* a, const Shape* b) -> bool
+                                            {
+                                                return a->getPerimeter() > b->getPerimeter();
+                                            });
+    inputHandler.setShapes(shapes);
+}

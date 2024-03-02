@@ -5,7 +5,7 @@
 
 class CommandProcessor5 : public CommandProcessor {
 public:
-    void process(InputHandler& inputHandler, std::istringstream& inputStream) override;
+    void process(InputHandler& inputHandler, std::istream& inputStream) override;
 };
 
 #endif // COMMANDPROCESSOR5_H

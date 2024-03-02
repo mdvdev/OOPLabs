@@ -1,4 +1,4 @@
-#include <sstream>
+#include <iostream>
 
 #include "ShapeFactory.h"
 #include "Circle.h"
@@ -7,7 +7,7 @@
 #include "Polygon.h"
 #include "SyntaxError.h"
 
-Shape* ShapeFactory::createShape(const std::string& shapeType, std::istringstream& inputStream)
+Shape* ShapeFactory::createShape(const std::string& shapeType, std::istream& inputStream)
 {
     if (shapeType == "Circle") {
         return createCircle(inputStream);
@@ -22,7 +22,7 @@ Shape* ShapeFactory::createShape(const std::string& shapeType, std::istringstrea
     }
 }
 
-Circle* ShapeFactory::createCircle(std::istringstream& inputStream)
+Circle* ShapeFactory::createCircle(std::istream& inputStream)
 {
     try {
         std::string name;
@@ -37,7 +37,7 @@ Circle* ShapeFactory::createCircle(std::istringstream& inputStream)
     }
 }
 
-Rectangle* ShapeFactory::createRectangle(std::istringstream& inputStream)
+Rectangle* ShapeFactory::createRectangle(std::istream& inputStream)
 {
     try {
         std::string name;
@@ -53,7 +53,7 @@ Rectangle* ShapeFactory::createRectangle(std::istringstream& inputStream)
 
 }
 
-Triangle* ShapeFactory::createTriangle(std::istringstream& inputStream)
+Triangle* ShapeFactory::createTriangle(std::istream& inputStream)
 {
     try {
         std::string name;
@@ -70,7 +70,7 @@ Triangle* ShapeFactory::createTriangle(std::istringstream& inputStream)
     }
 }
 
-Polygon* ShapeFactory::createPolygon(std::istringstream& inputStream)
+Polygon* ShapeFactory::createPolygon(std::istream& inputStream)
 {
     try {
         std::string name;
