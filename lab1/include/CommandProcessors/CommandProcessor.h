@@ -1,7 +1,7 @@
 #ifndef COMMANDPROCESSOR_H
 #define COMMANDPROCESSOR_H
 
-#include <sstream>
+#include <iostream>
 
 class InputHandler;
 

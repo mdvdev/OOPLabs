@@ -1,4 +1,3 @@
-#include <vector>
 #include <iostream>
 
 #include "CommandProcessor4.h"
@@ -7,10 +6,10 @@
 
 void CommandProcessor4::process(InputHandler& inputHandler, std::istream& inputStream)
 {
-    const std::vector<Shape*>& shapes = inputHandler.getShapes();
+    size_t shapesSize = inputHandler.getShapesSize();
     float sum = 0;
-    for (const auto& shape : shapes) {
-        sum += shape->getPerimeter();
+    for (size_t i = 0; i < shapesSize; ++i) {
+        sum += inputHandler.getShape(i)->getPerimeter();
     }
     std::cout << "Perimeter sum=" << sum << std::endl;
 }

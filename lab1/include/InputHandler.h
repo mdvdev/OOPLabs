@@ -1,29 +1,28 @@
 #ifndef INPUTHANDLER_H
 #define INPUTHANDLER_H
 
+#include <iostream>
 #include <vector>
-
-#include "CommandProcessorFactory.h"
 
 class Shape;
 
 class InputHandler {
 public:
+    ~InputHandler();
+
     int start();
 
-    const std::vector<Shape*>& getShapes() const;
+    size_t getShapesSize() const;
 
-    void setShapes(const std::vector<Shape*>& shapes);
-
+    void sortShapes();
     void addShape(Shape* shape);
-    void removeShape(int index);
+    void removeShape(size_t index);
+    const Shape* getShape(size_t index) const;
 
 private:
     std::vector<Shape*> shapes;
-    CommandProcessorFactory factory;
 
     int getOpcode(std::istream& inputStream) const;
-    void resetInputStream(std::istream& inputStream) const;
 };
 
 #endif // INPUTHANDLER_H

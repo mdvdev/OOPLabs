@@ -8,12 +8,10 @@ class ParamObject;
 
 class CommandProcessorFactory {
 public:
-    CommandProcessorFactory();
-
-    CommandProcessor* createCommandProcessor(int opcode);
+    static CommandProcessor* createCommandProcessor(int opcode);
 
 private:
-    std::map<int, CommandProcessor*> processors;
+    static std::map<int, CommandProcessor*> processors;
 };
 
 #endif // COMMANDPROCESSORFACTORY_H

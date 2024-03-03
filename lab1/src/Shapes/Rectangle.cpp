@@ -5,7 +5,7 @@ Rectangle::Rectangle(const std::string& name, const Point& upperLeftPoint, const
     : Shape(name), upperLeftPoint(upperLeftPoint), bottomRightPoint(bottomRightAngle)
 {
     if (!isValidParams(upperLeftPoint, bottomRightAngle)) {
-        throw InvalidParams("Error: invalid parameters");
+        throw InvalidParams("Invalid parameters");
     }
 }
 

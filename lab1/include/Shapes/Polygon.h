@@ -18,6 +18,7 @@ public:
     std::vector<Point> getVertices() const;
 
 private:
+    constexpr static int minVertexNum = 3;
     std::vector<Point> vertices;
 };
 

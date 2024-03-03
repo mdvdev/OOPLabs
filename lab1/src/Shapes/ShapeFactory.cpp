@@ -5,6 +5,7 @@
 #include "Rectangle.h"
 #include "Triangle.h"
 #include "Polygon.h"
+
 #include "SyntaxError.h"
 
 Shape* ShapeFactory::createShape(const std::string& shapeType, std::istream& inputStream)
@@ -24,6 +25,8 @@ Shape* ShapeFactory::createShape(const std::string& shapeType, std::istream& inp
 
 Circle* ShapeFactory::createCircle(std::istream& inputStream)
 {
+    std::ios::iostate savedStreamState = inputStream.exceptions();
+    inputStream.exceptions(std::istream::failbit);
     try {
         std::string name;
         inputStream >> name;
@@ -31,14 +34,18 @@ Circle* ShapeFactory::createCircle(std::istream& inputStream)
         inputStream >> center;
         float radius;
         inputStream >> radius;
+        inputStream.exceptions(savedStreamState);
         return new Circle(name, center, radius);
-    } catch (const std::ios_base::failure& e) {
+    } catch (const std::ios_base::failure& fail) {
+        inputStream.exceptions(savedStreamState);
         throw SyntaxError("Syntax error");
     }
 }
 
 Rectangle* ShapeFactory::createRectangle(std::istream& inputStream)
 {
+    std::ios::iostate savedStreamState = inputStream.exceptions();
+    inputStream.exceptions(std::istream::failbit);
     try {
         std::string name;
         inputStream >> name;
@@ -46,15 +53,18 @@ Rectangle* ShapeFactory::createRectangle(std::istream& inputStream)
         inputStream >> upperLeftAngle;
         Point bottomRightPoint;
         inputStream >> bottomRightPoint;
+        inputStream.exceptions(savedStreamState);
         return new Rectangle(name, upperLeftAngle, bottomRightPoint);
-    } catch (const std::ios_base::failure& e) {
+    } catch (const std::ios_base::failure& fail) {
+        inputStream.exceptions(savedStreamState);
         throw SyntaxError("Syntax error");
     }
-
 }
 
 Triangle* ShapeFactory::createTriangle(std::istream& inputStream)
 {
+    std::ios::iostate savedStreamState = inputStream.exceptions();
+    inputStream.exceptions(std::istream::failbit);
     try {
         std::string name;
         inputStream >> name;
@@ -64,24 +74,33 @@ Triangle* ShapeFactory::createTriangle(std::istream& inputStream)
         inputStream >> vertex2;
         Point vertex3;
         inputStream >> vertex3;
+        inputStream.exceptions(savedStreamState);
         return new Triangle(name, vertex1, vertex2, vertex3);
-    } catch (const std::ios_base::failure& e) {
+    } catch (const std::ios_base::failure& fail) {
+        inputStream.exceptions(savedStreamState);
         throw SyntaxError("Syntax error");
     }
 }
 
 Polygon* ShapeFactory::createPolygon(std::istream& inputStream)
 {
+    std::ios::iostate savedStreamState = inputStream.exceptions();
+    inputStream.exceptions(std::istream::failbit);
     try {
         std::string name;
         inputStream >> name;
+        size_t verticesSize;
+        inputStream >> verticesSize;
         std::vector<Point> vertices;
-        Point vertex;
-        while (inputStream >> vertex) {
+        for (size_t i = 0; i < verticesSize; ++i) {
+            Point vertex;
+            inputStream >> vertex;
             vertices.push_back(vertex);
         }
+        inputStream.exceptions(savedStreamState);
         return new Polygon(name, vertices);
-    } catch (const std::ios_base::failure& e) {
+    } catch (const std::ios_base::failure& fail) {
+        inputStream.exceptions(savedStreamState);
         throw SyntaxError("Syntax error");
     }
 }

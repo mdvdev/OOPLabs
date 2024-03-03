@@ -1,15 +1,16 @@
-#include <vector>
 #include <iostream>
 
 #include "CommandProcessor3.h"
 #include "Shape.h"
 #include "InputHandler.h"
 
+#include "lib.h"
+
 void CommandProcessor3::process(InputHandler& inputHandler, std::istream& inputStream)
 {
-    const std::vector<Shape*>& shapes = inputHandler.getShapes();
-    for (size_t i = 0; i < shapes.size(); ++i) {
-        std::cout << i << " " << shapes[i]->getType() <<
-                " Perimeter:" << shapes[i]->getPerimeter() << std::endl;
+    size_t shapesSize = inputHandler.getShapesSize();
+    for (size_t i = 0; i < shapesSize; ++i) {
+        std::cout << i << " " << inputHandler.getShape(i)->getType() <<
+            " Perimeter=" << floatToString(inputHandler.getShape(i)->getPerimeter()) << std::endl;
     }
 }

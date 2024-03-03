@@ -1,8 +1,12 @@
 #include "Polygon.h"
+#include "InvalidParams.h"
 
 Polygon::Polygon(const std::string& name, const std::vector<Point>& vertices)
     : Shape(name), vertices(vertices)
 {
+    if (vertices.size() < minVertexNum) {
+        throw InvalidParams("Invalid parameters");
+    }
 }
 
 float Polygon::getPerimeter() const
@@ -21,9 +25,12 @@ float Polygon::getPerimeter() const
 std::string Polygon::toString() const
 {
     std::string string = "Polygon{name=";
-    string += name + ", ";
-    for (const auto& vertex : vertices) {
-        string += vertex.toString() + " ";
+    string += name + ", vertices=";
+    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+        string += it->toString();
+        if (it + 1 != vertices.end()) {
+            string += " ";
+        }
     }
     string += "}";
     return string;

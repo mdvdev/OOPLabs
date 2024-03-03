@@ -3,11 +3,13 @@
 #include "Circle.h"
 #include "InvalidParams.h"
 
+#include "lib.h"
+
 Circle::Circle(const std::string& name, const Point& center, float radius)
     : Shape(name), center(center), radius(radius)
 {
     if (!isValidParams(center, radius)) {
-        throw InvalidParams("Error: invalid parameters");
+        throw InvalidParams("Invalid parameters");
     }
 }
 
@@ -26,7 +28,7 @@ std::string Circle::toString() const
     return "Circle{"
            "name=" + name +
            ", center=" + center.toString() +
-           ", radius=" + std::to_string(radius) +
+           ", radius=" + floatToString(radius) +
            "}";
 }
 

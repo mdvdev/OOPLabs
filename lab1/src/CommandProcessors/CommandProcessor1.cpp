@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "ShapeFactory.h"
 #include "SyntaxError.h"
+#include "lib.h"
 
 void CommandProcessor1::process(InputHandler& inputHandler, std::istream& inputStream)
 {
@@ -11,4 +12,5 @@ void CommandProcessor1::process(InputHandler& inputHandler, std::istream& inputS
     }
     Shape* shape = ShapeFactory::createShape(shapeType, inputStream);
     inputHandler.addShape(shape);
+    resetInputStream(inputStream);
 }

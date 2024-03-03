@@ -5,7 +5,7 @@ Triangle::Triangle(const std::string& name, const Point& vertex1, const Point& v
     : Shape(name), vertex1(vertex1), vertex2(vertex2), vertex3(vertex3)
 {
     if (!isValidParams(vertex1, vertex2, vertex3)) {
-        throw InvalidParams("Error: invalid parameters");
+        throw InvalidParams("Invalid parameters");
     }
 }
 

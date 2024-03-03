@@ -1,11 +1,17 @@
 #include <iostream>
-#include <limits>
+#include <algorithm>
 
-#include "CommandProcessor.h"
 #include "InputHandler.h"
+
+#include "CommandProcessorFactory.h"
+#include "CommandProcessor.h"
+
 #include "SyntaxError.h"
 #include "InvalidParams.h"
 #include "EndOfFileException.h"
+
+#include "Shape.h"
+#include "lib.h"
 
 int InputHandler::start()
 {
@@ -13,8 +19,7 @@ int InputHandler::start()
     for (;;) {
         try {
             int opcode = getOpcode(std::cin);
-            // TODO convert factory to static method
-            CommandProcessor* processor = factory.createCommandProcessor(opcode);
+            CommandProcessor* processor = CommandProcessorFactory::createCommandProcessor(opcode);
             processor->process(*this, std::cin);
         } catch (const SyntaxError& e) {
             std::cout << e.what() << std::endl;
@@ -53,23 +58,33 @@ void InputHandler::addShape(Shape* shape)
     shapes.push_back(shape);
 }
 
-void InputHandler::removeShape(int index)
+void InputHandler::removeShape(size_t index)
 {
     shapes.erase(shapes.begin() + index);
 }
 
-const std::vector<Shape*>& InputHandler::getShapes() const
+InputHandler::~InputHandler()
 {
-    return shapes;
+    for (auto& shape : shapes) {
+        delete shape;
+    }
 }
 
-void InputHandler::setShapes(const std::vector<Shape*>& shapes)
+size_t InputHandler::getShapesSize() const
 {
-    this->shapes = shapes;
+    return shapes.size();
 }
 
-void InputHandler::resetInputStream(std::istream& inputStream) const
+const Shape* InputHandler::getShape(size_t index) const
 {
-    inputStream.clear();
-    inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return shapes.at(index);
+}
+
+void InputHandler::sortShapes()
+{
+    std::sort(shapes.begin(), shapes.end(),
+        [](const Shape* a, const Shape* b) -> bool
+        {
+            return a->getPerimeter() < b->getPerimeter();
+        });
 }

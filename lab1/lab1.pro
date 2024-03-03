@@ -26,6 +26,7 @@ SOURCES += \
         src/Shapes/Rectangle.cpp \
         src/Shapes/Shape.cpp \
         src/Shapes/Triangle.cpp \
+        src/lib.cpp \
         src/main.cpp
 
 INCLUDEPATH += $$PWD/include
@@ -57,4 +58,5 @@ HEADERS += \
     include/CommandProcessors/CommandProcessor6.h \
     include/CommandProcessors/CommandProcessor7.h \
     include/Shapes/ShapeFactory.h \
-    include/EndOfFileException.h
+    include/EndOfFileException.h \
+    include/lib.h

@@ -1,4 +1,3 @@
-#include <vector>
 #include <iostream>
 
 #include "CommandProcessor2.h"
@@ -7,8 +6,8 @@
 
 void CommandProcessor2::process(InputHandler& inputHandler, std::istream& inputStream)
 {
-    const std::vector<Shape*>& shapes = inputHandler.getShapes();
-    for (size_t i = 0; i < shapes.size(); ++i) {
-        std::cout << i << " " << shapes[i]->toString() << std::endl;
+    size_t shapesSize = inputHandler.getShapesSize();
+    for (size_t i = 0; i < shapesSize; ++i) {
+        std::cout << i << " " << inputHandler.getShape(i)->toString() << std::endl;
     }
 }

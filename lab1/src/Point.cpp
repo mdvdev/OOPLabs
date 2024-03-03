@@ -1,8 +1,11 @@
 #include <cmath>
 #include <iostream>
+#include <sstream>
 
 #include "Point.h"
 #include "SyntaxError.h"
+
+#include "lib.h"
 
 Point::Point(float x, float y)
     : x(x), y(y)
@@ -22,7 +25,7 @@ float Point::getX() const
 float Point::getY() const
 {
     return y;
-}
+};
 
 float Point::getDistance(const Point& point) const
 {
@@ -34,8 +37,8 @@ float Point::getDistance(const Point& point) const
 std::string Point::toString() const
 {
     return "Point{"
-           "x=" + std::to_string(x) +
-           ", y=" + std::to_string(y) +
+           "x=" + floatToString(x) +
+           ", y=" + floatToString(y) +
            "}";
 }
 
@@ -52,13 +55,19 @@ void Point::setY(float y)
 std::istream& operator>>(std::istream& is, Point& point)
 {
     try {
-        std::string string;
+        std::string token;
+        is >> token;
+        std::istringstream sstream(token);
 
-        std::getline(is, string, '/');
-        float x = std::stof(string);
+        if (!std::getline(sstream, token, '/')) {
+            throw SyntaxError("Syntax error");
+        }
+        float x = std::stof(token);
 
-        is >> string;
-        float y = std::stof(string);
+        if (!std::getline(sstream, token, '/')) {
+            throw SyntaxError("Syntax error");
+        }
+        float y = std::stof(token);
 
         point.setX(x);
         point.setY(y);

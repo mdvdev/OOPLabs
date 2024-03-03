@@ -23,6 +23,6 @@ private:
     float y;
 };
 
-#endif // POINT_H
-
 std::istream& operator>>(std::istream& is, Point& point);
+
+#endif // POINT_H
