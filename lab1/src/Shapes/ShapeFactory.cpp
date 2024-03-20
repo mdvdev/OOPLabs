@@ -39,6 +39,9 @@ Circle* ShapeFactory::createCircle(std::istream& inputStream)
     } catch (const std::ios_base::failure& fail) {
         inputStream.exceptions(savedStreamState);
         throw SyntaxError("Syntax error");
+    } catch (const SyntaxError& e) {
+        inputStream.exceptions(savedStreamState);
+        throw e;
     }
 }
 

@@ -16,6 +16,7 @@
 int InputHandler::start()
 {
     int retCode = 0;
+    printMenu();
     for (;;) {
         try {
             int opcode = getOpcode(std::cin);
@@ -42,15 +43,21 @@ int InputHandler::start()
 
 int InputHandler::getOpcode(std::istream& inputStream) const
 {
-    int opcode;
-    if (!(inputStream >> opcode)) {
+    std::ios::iostate savedStreamState = inputStream.exceptions();
+    inputStream.exceptions(std::ios::failbit | std::ios::badbit);
+    try {
+        int opcode;
+        inputStream >> opcode;
+        inputStream.exceptions(savedStreamState);
+        return opcode;
+    } catch (const std::exception& fail) {
+        inputStream.exceptions(savedStreamState);
         if (inputStream.eof()) {
-            throw EndOfFileException("Bye!");
+            throw EndOfFileException("Bye");
         } else {
             throw SyntaxError("Syntax error");
         }
     }
-    return opcode;
 }
 
 void InputHandler::addShape(Shape* shape)
@@ -60,6 +67,9 @@ void InputHandler::addShape(Shape* shape)
 
 void InputHandler::removeShape(size_t index)
 {
+    if (index >= shapes.size()) {
+        return;
+    }
     shapes.erase(shapes.begin() + index);
 }
 
@@ -87,4 +97,15 @@ void InputHandler::sortShapes()
         {
             return a->getPerimeter() < b->getPerimeter();
         });
+}
+
+void InputHandler::printMenu() const
+{
+    std::cout << "1 Add shape to collection. Syntax: ShapeType Name Params" << std::endl;
+    std::cout << "2 Print shapes with types and params" << std::endl;
+    std::cout << "3 Print shapes with types and perimeters" << std::endl;
+    std::cout << "4 Print perimeters sum" << std::endl;
+    std::cout << "5 Sort shapes by increasing perimeters" << std::endl;
+    std::cout << "6 Delete shape by index. Syntax: Index" << std::endl;
+    std::cout << "7 Delete shapes whose perimeters are larger than number. Syntax: Number" << std::endl;
 }

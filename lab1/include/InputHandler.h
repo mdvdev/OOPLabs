@@ -23,6 +23,7 @@ private:
     std::vector<Shape*> shapes;
 
     int getOpcode(std::istream& inputStream) const;
+    void printMenu() const;
 };
 
 #endif // INPUTHANDLER_H
