@@ -50,7 +50,7 @@ int InputHandler::getOpcode(std::istream& inputStream) const
         inputStream >> opcode;
         inputStream.exceptions(savedStreamState);
         return opcode;
-    } catch (const std::exception& fail) {
+    } catch (const std::ios_base::failure& fail) {
         inputStream.exceptions(savedStreamState);
         if (inputStream.eof()) {
             throw EndOfFileException("Bye");
