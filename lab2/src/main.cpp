@@ -1,5 +1,4 @@
 #include "BinarySearchTree.h"
-
 struct Foo {};
 
 int main()
@@ -14,7 +13,10 @@ int main()
         std::cout << "not exist\n\n";
 
     tree.add(1);
-
+    if (tree.exist(1))
+        std::cout << "exist\n\n";
+    else
+        std::cout << "not exist\n\n";
     std::cout << tree << "\n";
 
     std::cout << "length == " << tree.length() << "\n\n";

@@ -6,11 +6,7 @@
 #include <list>
 #include <memory>
 
-template<typename T>
-class BinarySearchTree;
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const BinarySearchTree<T>& tree);
+#include "OutputBinarySearchTree.h"
 
 template<typename T>
 class BinarySearchTree {
@@ -25,103 +21,30 @@ public:
     class Iterator;
 
     BinarySearchTree() = default;
-
-    BinarySearchTree(const BinarySearchTree<T>& tree) {
-        for (const auto& elem : tree)
-            add(elem);
-    }
-
+    BinarySearchTree(const BinarySearchTree<T>& tree);
     BinarySearchTree(BinarySearchTree<T>&& tree) = default;
-
-    BinarySearchTree(std::initializer_list<T> lst) {
-        for (const auto& elem : lst)
-            add(elem);
-    }
-
+    BinarySearchTree(std::initializer_list<T> lst);
     ~BinarySearchTree() = default;
 
-    BinarySearchTree<T>& operator=(const BinarySearchTree<T>& tree) {
-        for (const auto& elem : tree)
-            add(elem);
-    }
-
+    BinarySearchTree<T>& operator=(const BinarySearchTree<T>& tree);
     BinarySearchTree<T>& operator=(BinarySearchTree<T>&& tree) = default;
 
-    Iterator begin() const {
-        return Iterator{ *this };
-    }
-
-    Iterator end() const {
-        return Iterator{ nullptr };
-    }
+    Iterator begin() const;
+    Iterator end() const;
 
     friend std::ostream& operator<< <T>(std::ostream& os, const BinarySearchTree<T>& tree);
 
-    int length() const {
-        int count = 0;
+    int length() const;
 
-        for (const auto& elem : *this)
-            count++;
+    bool exist(const T& elem) const;
 
-        return count;
-    }
+    void add(const T& elem);
+    void remove(const T& elem);
 
-    bool exist(const T& elem) const {
-        return getElem(elem, root) != nullptr;
-    }
+    T min() const;
+    T max() const;
 
-    void add(const T& elem) {
-        insert(elem, root);
-    }
-
-    void remove(const T& elem) {
-        std::shared_ptr<Node> deleted = getElem(elem, root);
-        if (!deleted) return;
-
-        if (!deleted->left && !deleted->right) {
-            if (deleted == root)
-                root = nullptr;
-            else if (deleted == deleted->parent.lock()->left)
-                deleted->parent.lock()->left = nullptr;
-            else
-                deleted->parent.lock()->right = nullptr;
-        } else if (deleted->left && deleted->right) {
-            Iterator iter(deleted); ++iter;
-            std::shared_ptr<Node> successor = std::move(iter.current);
-
-            T valueCopy = successor->value;
-
-            remove(successor->value);
-
-            deleted->value = std::move(valueCopy);
-        } else {
-            std::shared_ptr<Node> child = deleted->left ? deleted->left : deleted->right;
-
-            if (deleted == root)
-                root = child;
-            else if (deleted == deleted->parent.lock()->left)
-                deleted->parent.lock()->left = child;
-            else
-                deleted->parent.lock()->right = child;
-        }
-    }
-
-    T min() const {
-        return Iterator::downLeft(root)->value;
-    }
-
-    T max() const {
-        return Iterator::downRight(root)->value;
-    }
-
-    std::list<T> to_list() const {
-        std::list<T> lst;
-
-        for (const auto& elem : *this)
-            lst.push_back(elem);
-
-        return lst;
-    }
+    std::list<T> to_list() const;
 private:
     static void insert(const T& elem, std::shared_ptr<Node>& cur) {
         if (!cur)
@@ -167,6 +90,122 @@ private:
 };
 
 template<typename T>
+BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& tree)
+{
+    for (const auto& elem : tree)
+        add(elem);
+}
+
+template<typename T>
+BinarySearchTree<T>::BinarySearchTree(std::initializer_list<T> lst)
+{
+    for (const auto& elem : lst)
+        add(elem);
+}
+
+template<typename T>
+BinarySearchTree<T>&
+BinarySearchTree<T>::operator=(const BinarySearchTree<T>& tree) {
+    for (const auto &elem: tree)
+        add(elem);
+}
+
+template<typename T>
+BinarySearchTree<T>::Iterator
+BinarySearchTree<T>::begin() const
+{
+    return Iterator{ *this };
+}
+
+template<typename T>
+BinarySearchTree<T>::Iterator
+BinarySearchTree<T>::end() const
+{
+    return Iterator{ nullptr };
+}
+
+template<typename T>
+int BinarySearchTree<T>::length() const
+{
+    int count = 0;
+
+    for (const auto& elem : *this)
+        count++;
+
+    return count;
+}
+
+template<typename T>
+bool BinarySearchTree<T>::exist(const T& elem) const
+{
+    return getElem(elem, root) != nullptr;
+}
+
+template<typename T>
+void BinarySearchTree<T>::add(const T& elem)
+{
+    insert(elem, root);
+}
+
+template<typename T>
+void BinarySearchTree<T>::remove(const T& elem)
+{
+    std::shared_ptr<Node> deleted = getElem(elem, root);
+    if (!deleted) return;
+
+    if (!deleted->left && !deleted->right) {
+        if (deleted == root)
+            root = nullptr;
+        else if (deleted == deleted->parent.lock()->left)
+            deleted->parent.lock()->left = nullptr;
+        else
+            deleted->parent.lock()->right = nullptr;
+    } else if (deleted->left && deleted->right) {
+        Iterator iter(deleted); ++iter;
+        std::shared_ptr<Node> successor = std::move(iter.current);
+
+        T valueCopy = successor->value;
+
+        remove(successor->value);
+
+        deleted->value = std::move(valueCopy);
+    } else {
+        std::shared_ptr<Node> child = deleted->left ? deleted->left : deleted->right;
+
+        if (deleted == root)
+            root = child;
+        else if (deleted == deleted->parent.lock()->left)
+            deleted->parent.lock()->left = child;
+        else
+            deleted->parent.lock()->right = child;
+    }
+}
+
+template<typename T>
+T BinarySearchTree<T>::min() const
+{
+    return Iterator::downLeft(root)->value;
+}
+
+template<typename T>
+T BinarySearchTree<T>::max() const
+{
+    return Iterator::downRight(root)->value;
+}
+
+template<typename T>
+std::list<T> BinarySearchTree<T>::to_list() const
+{
+    std::list<T> lst;
+
+    for (const auto& elem : *this)
+        lst.push_back(elem);
+
+    return lst;
+}
+
+
+template<typename T>
 class BinarySearchTree<T>::Iterator :
         public std::iterator<std::bidirectional_iterator_tag, T> {
 private:
@@ -174,67 +213,31 @@ private:
 public:
     friend class BinarySearchTree;
 
-    explicit Iterator(const BinarySearchTree<T>& tree)  {
-        current = downLeft(tree.root);
-    }
+    explicit Iterator(const BinarySearchTree<T>& tree);
 
     Iterator(const Iterator& rhs) = default;
     Iterator(Iterator&& rhs) = default;
 
     // inorder successor
-    Iterator next() const {
-        if (!current) return *this;
-
-        std::shared_ptr<Node> cur = current;
-
-        cur = cur->right ? downLeft(cur->right) : upRight(cur);
-
-        return Iterator{ cur };
-    }
-
+    Iterator next() const;
     // inorder predecessor
-    Iterator prev() const {
-        if (!current) return *this;
+    Iterator prev() const;
 
-        std::shared_ptr<Node> cur = current;
+    T value() const;
 
-        cur = cur->left ? downRight(cur->left) : upLeft(cur);
-
-        return Iterator{ cur };
-    }
-
-    T value() const {
-        return current->value;
-    }
-
-    bool is_end() const {
-        return current == nullptr;
-    }
+    bool is_end() const;
 
     Iterator& operator=(const Iterator& rhs) = default;
     Iterator& operator=(Iterator&& rhs) = default;
 
-    Iterator& operator++() {
-        *this = next();
-        return *this;
-    }
+    Iterator& operator++();
+    Iterator& operator--();
 
-    Iterator& operator--() {
-        *this = prev();
-        return *this;
-    }
+    const T& operator*() const;
 
-    const T& operator*() const {
-        return current->value;
-    }
+    bool operator==(const Iterator& rhs) const;
+    bool operator!=(const Iterator& rhs) const;
 
-    bool operator==(const Iterator& rhs) const {
-        return current == rhs.current;
-    }
-
-    bool operator!=(const Iterator& rhs) const {
-        return !(*this == rhs);
-    }
 private:
     explicit Iterator(const std::shared_ptr<Node>& cur) : current(cur) {}
 
@@ -276,17 +279,81 @@ private:
 };
 
 template<typename T>
-concept Printable = requires(T t) {
-    std::cout << t;
-};
-
-template<Printable T>
-std::ostream& operator<<(std::ostream& os, const BinarySearchTree<T>& tree)
+BinarySearchTree<T>::Iterator::Iterator(const BinarySearchTree<T>& tree)
 {
-    for (const auto& elem : tree)
-        std::cout << elem << "\n";
+    current = downLeft(tree.root);
+}
 
-    return os;
+template<typename T>
+BinarySearchTree<T>::Iterator
+BinarySearchTree<T>::Iterator::next() const
+{
+    if (!current) return *this;
+
+    std::shared_ptr<Node> cur = current;
+
+    cur = cur->right ? downLeft(cur->right) : upRight(cur);
+
+    return Iterator{ cur };
+}
+
+template<typename T>
+BinarySearchTree<T>::Iterator
+BinarySearchTree<T>::Iterator::prev() const
+{
+    if (!current) return *this;
+
+    std::shared_ptr<Node> cur = current;
+
+    cur = cur->left ? downRight(cur->left) : upLeft(cur);
+
+    return Iterator{ cur };
+}
+
+template<typename T>
+T BinarySearchTree<T>::Iterator::value() const
+{
+    return current->value;
+}
+
+template<typename T>
+bool BinarySearchTree<T>::Iterator::is_end() const
+{
+    return current == nullptr;
+}
+
+template<typename T>
+BinarySearchTree<T>::Iterator&
+BinarySearchTree<T>::Iterator::operator++()
+{
+    *this = next();
+    return *this;
+}
+
+template<typename T>
+BinarySearchTree<T>::Iterator&
+BinarySearchTree<T>::Iterator::operator--()
+{
+    *this = prev();
+    return *this;
+}
+
+template<typename T>
+const T& BinarySearchTree<T>::Iterator::operator*() const
+{
+    return current->value;
+}
+
+template<typename T>
+bool BinarySearchTree<T>::Iterator::operator==(const Iterator& rhs) const
+{
+    return current == rhs.current;
+}
+
+template<typename T>
+bool BinarySearchTree<T>::Iterator::operator!=(const Iterator& rhs) const
+{
+    return !(*this == rhs);
 }
 
 #endif // BINARYSEARCHTREE_H
