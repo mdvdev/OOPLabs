@@ -1,5 +1,4 @@
 #include "BinarySearchTree.h"
-struct Foo {};
 
 int main()
 {
@@ -13,10 +12,7 @@ int main()
         std::cout << "not exist\n\n";
 
     tree.add(1);
-    if (tree.exist(1))
-        std::cout << "exist\n\n";
-    else
-        std::cout << "not exist\n\n";
+
     std::cout << tree << "\n";
 
     std::cout << "length == " << tree.length() << "\n\n";
@@ -32,4 +28,15 @@ int main()
     std::list<int> lst = tree.to_list();
 
     std::cout << "List first elem == " <<  *lst.begin() << "\n\n";
+
+    BinarySearchTree<int> tree1 = { 30, 2, -9, 0, 53, 100, 50 };
+
+    std::string fname = "image.dot";
+
+    try {
+        BinarySearchTree<int>::ImagePrinter printer(tree1, fname);
+        printer.printImage();
+    } catch (const std::ios_base::failure& fail) {
+        std::cerr << fail.what() << "\n";
+    }
 }

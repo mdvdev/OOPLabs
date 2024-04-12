@@ -1,15 +1,29 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <list>
 #include <memory>
+#include <unistd.h>
 
-#include "OutputBinarySearchTree.h"
+template<typename T>
+class BinarySearchTree;
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const BinarySearchTree<T>& tree);
+
+template<typename T>
+concept Printable = requires(T t) {
+    std::cout << t;
+};
+
+/* BINARY SEARCH TREE */
 
 template<typename T>
 class BinarySearchTree {
+private:
     struct Node {
         T value;
         std::weak_ptr<Node> parent;
@@ -19,6 +33,7 @@ class BinarySearchTree {
     std::shared_ptr<Node> root;
 public:
     class Iterator;
+    class ImagePrinter;
 
     BinarySearchTree() = default;
     BinarySearchTree(const BinarySearchTree<T>& tree);
@@ -205,6 +220,9 @@ std::list<T> BinarySearchTree<T>::to_list() const
 }
 
 
+// BST ITERATOR (inorder traversal)
+
+
 template<typename T>
 class BinarySearchTree<T>::Iterator :
         public std::iterator<std::bidirectional_iterator_tag, T> {
@@ -354,6 +372,76 @@ template<typename T>
 bool BinarySearchTree<T>::Iterator::operator!=(const Iterator& rhs) const
 {
     return !(*this == rhs);
+}
+
+
+// BST IMAGE PRINTER (using dot utility from Graphviz)
+
+
+template<typename T>
+class BinarySearchTree<T>::ImagePrinter {
+private:
+    const BinarySearchTree<T>& tree;
+    std::string fname;
+    std::ofstream os;
+public:
+    ImagePrinter(const BinarySearchTree<T>& tree, const std::string& fname);
+
+    ~ImagePrinter() = default;
+
+    void printImage();
+
+private:
+    void numberNodes(const std::shared_ptr<Node>& node, int n) {
+        if (!node) return;
+
+        os << n << " [shape=\"circle\"label=\"" << node->value << "\"];\n";
+
+        numberNodes(node->left, 2*n + 1);
+        numberNodes(node->right, 2*n + 2);
+
+        if (node->left)
+            os << n << "->" << 2*n + 1 << ";\n";
+
+        if (node->right)
+            os << n << "->" << 2*n + 2 << ";\n";
+    }
+};
+
+template<typename T>
+BinarySearchTree<T>::ImagePrinter::ImagePrinter(
+        const BinarySearchTree<T>& tree,
+        const std::string& fname)
+    : tree(tree), fname(fname)
+{
+    os.exceptions(std::ofstream::badbit | std::ofstream::failbit);
+    os.open(fname);
+}
+
+template<typename T>
+void BinarySearchTree<T>::ImagePrinter::printImage()
+{
+    os << "digraph G {\n";
+    numberNodes(tree.root, 0);
+    os << "}\n";
+
+    if (fork() == 0) {
+        size_t dotPos = fname.find('.');
+        std::string oname = dotPos != std::string::npos ?
+            fname.substr(0, dotPos) + ".png" : fname;
+
+        execlp("dot", "dot", "-Tpng", ("-o" + oname).c_str(), fname.c_str(), NULL);
+        perror("Error in execlp. Run dot manually: ");
+    }
+}
+
+template<Printable T>
+std::ostream& operator<<(std::ostream& os, const BinarySearchTree<T>& tree)
+{
+    for (const auto& elem : tree)
+        std::cout << elem << "\n";
+
+    return os;
 }
 
 #endif // BINARYSEARCHTREE_H
