@@ -220,7 +220,7 @@ std::list<T> BinarySearchTree<T>::to_list() const
 }
 
 
-// BST ITERATOR (inorder traversal)
+/* BST ITERATOR (inorder traversal) */
 
 
 template<typename T>
@@ -375,7 +375,7 @@ bool BinarySearchTree<T>::Iterator::operator!=(const Iterator& rhs) const
 }
 
 
-// BST IMAGE PRINTER (using dot utility from Graphviz)
+/* BST IMAGE PRINTER (using dot utility from Graphviz) */
 
 
 template<typename T>
