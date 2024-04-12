@@ -255,7 +255,6 @@ public:
 
     bool operator==(const Iterator& rhs) const;
     bool operator!=(const Iterator& rhs) const;
-
 private:
     explicit Iterator(const std::shared_ptr<Node>& cur) : current(cur) {}
 
@@ -390,7 +389,6 @@ public:
     ~ImagePrinter() = default;
 
     void printImage();
-
 private:
     void numberNodes(const std::shared_ptr<Node>& node, int n) {
         if (!node) return;
