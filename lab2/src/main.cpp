@@ -29,9 +29,9 @@ int main()
 
     std::cout << "List first elem == " <<  *lst.begin() << "\n\n";
 
-    BinarySearchTree<int> tree1 = { 30, 2, -9, 0, 53, 100, 50 };
+    BinarySearchTree<int> tree1 = { 100, 4, 2, 0, -1, 21, 103, 102, 101, 200 };
 
-    std::string fname = "image.dot";
+    const std::string fname = "image.dot";
 
     try {
         BinarySearchTree<int>::ImagePrinter printer(tree1, fname);
