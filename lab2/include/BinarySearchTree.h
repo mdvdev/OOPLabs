@@ -126,14 +126,14 @@ BinarySearchTree<T>::operator=(const BinarySearchTree<T>& tree) {
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator
+typename BinarySearchTree<T>::Iterator
 BinarySearchTree<T>::begin() const
 {
     return Iterator{ *this };
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator
+typename BinarySearchTree<T>::Iterator
 BinarySearchTree<T>::end() const
 {
     return Iterator{ nullptr };
@@ -302,7 +302,7 @@ BinarySearchTree<T>::Iterator::Iterator(const BinarySearchTree<T>& tree)
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator
+typename BinarySearchTree<T>::Iterator
 BinarySearchTree<T>::Iterator::next() const
 {
     if (!current) return *this;
@@ -315,7 +315,7 @@ BinarySearchTree<T>::Iterator::next() const
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator
+typename BinarySearchTree<T>::Iterator
 BinarySearchTree<T>::Iterator::prev() const
 {
     if (!current) return *this;
@@ -340,7 +340,7 @@ bool BinarySearchTree<T>::Iterator::is_end() const
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator&
+typename BinarySearchTree<T>::Iterator&
 BinarySearchTree<T>::Iterator::operator++()
 {
     *this = next();
@@ -348,7 +348,7 @@ BinarySearchTree<T>::Iterator::operator++()
 }
 
 template<typename T>
-BinarySearchTree<T>::Iterator&
+typename BinarySearchTree<T>::Iterator&
 BinarySearchTree<T>::Iterator::operator--()
 {
     *this = prev();
@@ -385,8 +385,6 @@ private:
     std::ofstream os;
 public:
     ImagePrinter(const BinarySearchTree<T>& tree, const std::string& fname);
-
-    ~ImagePrinter() = default;
 
     void printImage();
 private:
