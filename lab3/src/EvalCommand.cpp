@@ -1,6 +1,6 @@
-#include "EvalCommand.h"
+#include "CalculatorEvalCommand.h"
 
 // Shunting yard algorithm implementation
-int EvalCommand::execute()
+double CalculatorEvalCommand::execute()
 {
 }

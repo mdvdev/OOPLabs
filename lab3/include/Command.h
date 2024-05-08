@@ -1,10 +1,11 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+template<typename T>
 class Command {
 public:
-    virtual ~Command();
-    virtual int execute() = 0;
+    virtual ~Command() = default;
+    virtual T execute() = 0;
 };
 
 #endif // COMMAND_H

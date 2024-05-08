@@ -10,15 +10,24 @@ CONFIG += c++17
 
 SOURCES += \
     src/EvalCommand.cpp \
-    src/Calculator.cpp \
+    src/InputWidgets.cpp \
+    src/MathFunctions.cpp \
     src/main.cpp \
     src/MainWindow.cpp
 
 HEADERS += \
     include/Calculator.h \
+    include/CalculatorEvalCommand.h \
     include/Command.h \
-    include/EvalCommand.h \
-    include/MainWindow.h
+    include/Expression.h \
+    include/GUIDeleteCommand.h \
+    include/GUIEvalCommand.h \
+    include/GUISaveExprCommand.h \
+    include/GUI_Invoker.h \
+    include/InputWidgets.h \
+    include/Invoker.h \
+    include/MainWindow.h \
+    include/MathFunctions.h
 
 FORMS += \
     MainWindow.ui

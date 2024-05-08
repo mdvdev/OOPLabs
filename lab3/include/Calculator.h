@@ -3,18 +3,18 @@
 
 #include <memory>
 
+#include "Invoker.h"
 #include "Command.h"
 
-class Calculator {
-private:
-    std::unique_ptr<Command> command;
-public:
-    void setCommand(std::unique_ptr<Command> command) {
-        this->command = std::move(command);
-    }
+using DoubleReturnInvoker = Invoker<double, Command<double>>;
 
-    int execute() const {
-        return command->execute();
+class Calculator : public DoubleReturnInvoker {
+public:
+    Calculator(std::shared_ptr<Command<double>> command, QObject* parent = nullptr)
+        : DoubleReturnInvoker(command, parent) { }
+
+    double execute() override {
+        return DoubleReturnInvoker::command->execute();
     }
 };
 
