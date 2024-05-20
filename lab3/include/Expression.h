@@ -3,8 +3,6 @@
 
 #include <string>
 
-#include "MathFunctions.h"
-
 class Expression {
 private:
     std::string expr;
@@ -13,17 +11,27 @@ public:
     explicit Expression(const std::string& expr) : expr(expr) { }
     Expression() = default;
 
-    void push(const std::string& expr) {
-        this->expr += expr;
+    void push(const std::string& expr);
+    void pop();
+
+    void resetExpr() {
+        expr = "";
     }
 
-    void pop() {
-        for (const auto& [key, value] : MathFunctions::getInstance())
-            if (1) ;
+    void resetSavedValue() {
+        savedValue = 0.0;
     }
 
     std::string getExpr() const {
         return expr;
+    }
+
+    double getSavedValue() const {
+        return savedValue;
+    }
+
+    void setSavedValue(double value) {
+        savedValue = value;
     }
 };
 

@@ -6,421 +6,250 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>440</width>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="zeroPushButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>340</y>
-      <width>71</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="onePushButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>1</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="twoPushButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>2</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="threePushButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>3</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sixPushButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>280</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>6</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="fivePushButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>280</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>5</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="fourPushButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>280</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>4</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ninePushButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>250</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>9</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="eightPushButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>250</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>8</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sevenPushButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>250</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>7</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="dotPushButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>340</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>.</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="multiplyPushButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>250</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>×</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addPushButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>+</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="subtractPushButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>280</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="dividePushButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>220</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>÷</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="equalPushButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>340</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>=</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="clearPushButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>220</y>
-      <width>71</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>C</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="deletePushButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>220</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Del</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openParenthesisPushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>220</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="closeParenthesisPushButton">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>220</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>)</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="outputLineEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>180</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sqrtPushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>250</y>
-      <width>71</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>sqrt</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cosPushButton">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>cos</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="tgPushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>340</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>tg</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="inversePushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>280</y>
-      <width>71</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>1/x</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sinPushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>sin</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ctgPushButton">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>340</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ctg</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="memoryPlusPushButton">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>220</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>M+</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="memoryMinusPushButton">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>250</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>M-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="memoryReadPushButton">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>280</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MR</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="memoryClearPushButton">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>310</y>
-      <width>31</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MC</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="10" column="3">
+     <widget class="QPushButton" name="ctgPushButton">
+      <property name="text">
+       <string>ctg</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2" colspan="2">
+     <widget class="QPushButton" name="sqrtPushButton">
+      <property name="text">
+       <string>sqrt</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="memoryReadPushButton">
+      <property name="text">
+       <string>MR</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2" colspan="2">
+     <widget class="QPushButton" name="inversePushButton">
+      <property name="text">
+       <string>1/x</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QPushButton" name="memoryMinusPushButton">
+      <property name="text">
+       <string>M-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="6">
+     <widget class="QPushButton" name="threePushButton">
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="6">
+     <widget class="QPushButton" name="deletePushButton">
+      <property name="text">
+       <string>Del</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QPushButton" name="openParenthesisPushButton">
+      <property name="text">
+       <string>(</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="4">
+     <widget class="QPushButton" name="fourPushButton">
+      <property name="text">
+       <string>4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="7">
+     <widget class="QPushButton" name="multiplyPushButton">
+      <property name="text">
+       <string>×</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="5">
+     <widget class="QPushButton" name="twoPushButton">
+      <property name="text">
+       <string>2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QPushButton" name="memoryClearPushButton">
+      <property name="text">
+       <string>MC</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="memoryPlusPushButton">
+      <property name="text">
+       <string>M+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="4">
+     <widget class="QPushButton" name="sevenPushButton">
+      <property name="text">
+       <string>7</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="7">
+     <widget class="QPushButton" name="equalPushButton">
+      <property name="text">
+       <string>=</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="closeParenthesisPushButton">
+      <property name="text">
+       <string>)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="7">
+     <widget class="QLineEdit" name="outputLineEdit"/>
+    </item>
+    <item row="5" column="7">
+     <widget class="QPushButton" name="dividePushButton">
+      <property name="text">
+       <string>÷</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="4">
+     <widget class="QPushButton" name="onePushButton">
+      <property name="text">
+       <string>1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="7">
+     <widget class="QPushButton" name="addPushButton">
+      <property name="text">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="QPushButton" name="sinPushButton">
+      <property name="text">
+       <string>sin</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="5">
+     <widget class="QPushButton" name="eightPushButton">
+      <property name="text">
+       <string>8</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="6">
+     <widget class="QPushButton" name="sixPushButton">
+      <property name="text">
+       <string>6</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4" colspan="2">
+     <widget class="QPushButton" name="clearPushButton">
+      <property name="text">
+       <string>C</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5">
+     <widget class="QPushButton" name="fivePushButton">
+      <property name="text">
+       <string>5</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QPushButton" name="backPushButton">
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="7">
+     <widget class="QPushButton" name="subtractPushButton">
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="4" colspan="2">
+     <widget class="QPushButton" name="zeroPushButton">
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="2">
+     <widget class="QPushButton" name="tgPushButton">
+      <property name="text">
+       <string>tg</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="6">
+     <widget class="QPushButton" name="dotPushButton">
+      <property name="text">
+       <string>.</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="3">
+     <widget class="QPushButton" name="cosPushButton">
+      <property name="text">
+       <string>cos</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="6">
+     <widget class="QPushButton" name="ninePushButton">
+      <property name="text">
+       <string>9</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="7">
+     <widget class="QLineEdit" name="errorLineEdit">
+      <property name="text">
+       <string>No errors.</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>440</width>
      <height>24</height>
     </rect>
    </property>

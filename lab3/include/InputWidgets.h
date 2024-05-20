@@ -44,8 +44,11 @@ private:
     GUI_Invoker memoryMinusPushButton;
     GUI_Invoker memoryReadPushButton;
     GUI_Invoker memoryClearPushButton;
+
+    GUI_Invoker backPushButton;
 public:
     explicit InputWidgets(MainWindow& mainWindow);
+    friend class MainWindow;
 };
 
 #endif // INPUTWIDGETS_H
