@@ -33,19 +33,15 @@ private:
     GUI_Invoker openParenthesisPushButton;
     GUI_Invoker closeParenthesisPushButton;
 
-    GUI_Invoker sqrtPushButton;
-    GUI_Invoker inversePushButton;
-    GUI_Invoker sinPushButton;
-    GUI_Invoker cosPushButton;
-    GUI_Invoker tgPushButton;
-    GUI_Invoker ctgPushButton;
-
     GUI_Invoker memoryPlusPushButton;
     GUI_Invoker memoryMinusPushButton;
     GUI_Invoker memoryReadPushButton;
     GUI_Invoker memoryClearPushButton;
+
+    GUI_Invoker backPushButton;
 public:
     explicit InputWidgets(MainWindow& mainWindow);
+    friend class MainWindow;
 };
 
 #endif // INPUTWIDGETS_H

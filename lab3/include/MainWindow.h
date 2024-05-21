@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <stack>
 
 #include "InputWidgets.h"
 #include "Expression.h"
+#include "CalculatorEvalCommand.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,12 +20,19 @@ private:
     Ui::MainWindow* ui;
     InputWidgets inputWidgets;
     Expression expr;
+    std::string errorMsg;
+    std::stack<CalculatorEvalCommand> commands;
 public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+    void updateUi();
+    void setErrorMsg(const std::string& errorMsg);
+    void addEvalCommand(const CalculatorEvalCommand& command);
+    CalculatorEvalCommand getEvalCommand();
+    bool isCommandsEmpty() const;
 private:
     friend class InputWidgets;
-    void updateUi();
     void updateOutputLineEdit();
+    void updateErrorLineEdit();
 };
 #endif // MAINWINDOW_H
