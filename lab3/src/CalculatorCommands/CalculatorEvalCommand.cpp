@@ -21,11 +21,16 @@ LongFloat CalculatorEvalCommand::execute()
     std::istringstream is{ expr };
     LongFloat num;
     char c;
+    bool minusAsOperator = false;
 
     while (is >> c) {
         std::string input;
         input += c;
-        if ((input == "-" && (operands.empty() || (!operators.empty() && operators.top() == "("))) || std::isdigit(c)) {
+        if (!minusAsOperator && ((input == "-" && (operands.empty() || (!operators.empty() && operators.top() == "("))) ||
+                                 std::isdigit(c)))
+        {
+            if (std::isdigit(c) && !operators.empty() && operators.top() == "(")
+                minusAsOperator = true;
             is.unget();
             is >> num;
             if (is.fail() && !is.eof()) throw InvalidNumber("Invalid number.");
@@ -43,6 +48,7 @@ LongFloat CalculatorEvalCommand::execute()
             if (operators.top() != "(") throw SyntaxError("Mismatched parentheses.");
             operators.pop();
         } else if (Operators::getInstance().isFunctionExist(input)) {
+            if (input == "-" && minusAsOperator) minusAsOperator = false;
             std::string op;
             while (!operators.empty() && (op = operators.top()) != "(" &&
                    Operators::getInstance().isFunctionExist(op) &&

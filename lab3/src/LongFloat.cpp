@@ -263,7 +263,7 @@ std::istream& operator>>(std::istream& is, LongFloat& number)
     while (is >> c) {
         if ((!std::isdigit(c) && c != '.' && c != '-') ||
             (c == '.' && dotOccured) ||
-            (c == '-' && minusOccured))
+            (c == '-' && minusOccured) || (c == '-' && number.number != ""))
         {
             is.unget();
             break;
