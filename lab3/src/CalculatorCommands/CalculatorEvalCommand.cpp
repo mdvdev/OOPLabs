@@ -20,13 +20,17 @@ double CalculatorEvalCommand::execute()
     std::stack<double> operands;
     std::istringstream is{ expr };
     char c;
-    // TODO Implement arbitrary precision arithmetic
     double num;
+    bool minusAsOperator = false;
 
     while (is >> c) {
         std::string input;
         input += c;
-        if ((input == "-" && (operators.empty() || operators.top() == "(")) || std::isdigit(c)) {
+        if (!minusAsOperator && ((input == "-" && (operands.empty() || (!operators.empty() && operators.top() == "("))) ||
+                                std::isdigit(c)))
+        {
+            if (std::isdigit(c) && !operators.empty() && operators.top() == "(")
+                minusAsOperator = true;
             is.unget();
             if (!(is >> num)) throw SyntaxError("Invalid number.");
             operands.push(num);
@@ -50,6 +54,7 @@ double CalculatorEvalCommand::execute()
                 }
             }
         } else if (Operators::getInstance().isFunctionExist(input)) {
+            if (input == "-" && minusAsOperator) minusAsOperator = false;
             std::string op;
             while (!operators.empty() && (op = operators.top()) != "(" &&
                    Operators::getInstance().isFunctionExist(op) &&
