@@ -26,8 +26,9 @@ double CalculatorEvalCommand::execute()
     while (is >> c) {
         std::string input;
         input += c;
-        if ((input == "-" && !minusAsOperator && (operands.empty() || (!operators.empty() && operators.top() == "("))) ||
-                                std::isdigit(c))
+        if ((input == "-" && !minusAsOperator && (operands.empty() ||
+            (!operators.empty() && operators.top() == "("))) ||
+            std::isdigit(c))
         {
             if (std::isdigit(c) && !operators.empty() && operators.top() == "(")
                 minusAsOperator = true;
@@ -80,6 +81,8 @@ double CalculatorEvalCommand::execute()
     }
 
     evalAllOperators(operators, operands);
+
+    if (operands.empty()) throw SyntaxError("Error: invalid syntax.");
 
     return operands.top();
 }
