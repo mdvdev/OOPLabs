@@ -6,10 +6,9 @@
 #include "CalculatorEvalCommand.h"
 #include "Operators.h"
 
-#include "InvalidOperator.h"
-#include "InvalidOperand.h"
+#include "InvalidOperatorError.h"
+#include "InvalidOperandError.h"
 #include "SyntaxError.h"
-#include "InvalidNumber.h"
 
 // Shunting yard algorithm implementation
 LongFloat CalculatorEvalCommand::execute()
@@ -26,26 +25,26 @@ LongFloat CalculatorEvalCommand::execute()
     while (is >> c) {
         std::string input;
         input += c;
-        if ((input == "-" && !minusAsOperator && (operands.empty() || (!operators.empty() && operators.top() == "("))) ||
-                                 std::isdigit(c))
+        if ((input == "-" && !minusAsOperator && (operands.empty() ||
+            (!operators.empty() && operators.top() == "("))) ||
+            std::isdigit(c))
         {
             if (std::isdigit(c) && !operators.empty() && operators.top() == "(")
                 minusAsOperator = true;
             is.unget();
             is >> num;
-            if (is.fail() && !is.eof()) throw InvalidNumber("Invalid number.");
             operands.push(num);
         } else if (c == '(') {
             operators.push("(");
         } else if (c == ')') {
             std::string op;
-            if (operators.empty()) throw SyntaxError("Mismatched parentheses.");
+            if (operators.empty()) throw SyntaxError("Error: mismatched parentheses.");
             while (!(op = operators.top()).empty() && Operators::getInstance().isFunctionExist(op) && op != "(") {
-                if (operators.empty()) throw SyntaxError("Mismatched parentheses.");
+                if (operators.empty()) throw SyntaxError("Error: mismatched parentheses.");
                 operators.pop();
                 evalOperator(op, operands);
             }
-            if (operators.top() != "(") throw SyntaxError("Mismatched parentheses.");
+            if (operators.top() != "(") throw SyntaxError("Error: mismatched parentheses.");
             operators.pop();
         } else if (Operators::getInstance().isFunctionExist(input)) {
             if (input == "-" && minusAsOperator) minusAsOperator = false;
@@ -63,22 +62,24 @@ LongFloat CalculatorEvalCommand::execute()
             }
             operators.push(input);
         } else
-            throw InvalidOperator("Invalid operator.");
+            throw InvalidOperatorError("Error: invalid operator.");
     }
 
     evalAllOperators(operators, operands);
+
+    if (operands.empty()) throw SyntaxError("Error: invalid syntax.");
 
     return operands.top();
 }
 
 void CalculatorEvalCommand::evalOperator(const std::string& op, std::stack<LongFloat>& operands)
 {
-    if (operands.empty()) throw InvalidOperand("Invalid operand.");
+    if (operands.empty()) throw InvalidOperandError("Error: invalid operand.");
 
     LongFloat operand2 = operands.top();
     operands.pop();
 
-    if (operands.empty()) throw InvalidOperand("Invalid operand.");
+    if (operands.empty()) throw InvalidOperandError("Error: invalid operand.");
 
     LongFloat operand1 = operands.top();
     operands.pop();
@@ -89,16 +90,16 @@ void CalculatorEvalCommand::evalAllOperators(std::stack<std::string>& operators,
                                              std::stack<LongFloat>& operands)
 {
     if (!operands.empty() && operands.size() > 1 && operators.empty())
-        throw SyntaxError("Operator needed between operands.");
+        throw SyntaxError("Error: operator needed between operands.");
 
     std::string op;
     while (!operators.empty()) {
         op = operators.top();
         operators.pop();
-        if (op == "(") throw SyntaxError("Mismatched parentheses.");
+        if (op == "(") throw SyntaxError("Error: mismatched parentheses.");
         if (Operators::getInstance().isFunctionExist(op))
             evalOperator(op, operands);
         else
-            throw InvalidOperator("Invalid operator.");
+            throw InvalidOperatorError("Error: invalid operator.");
     }
 }

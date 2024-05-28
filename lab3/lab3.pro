@@ -21,12 +21,12 @@ SOURCES += \
 HEADERS += \
     include/CalculatorCommands/CalculatorEvalCommand.h \
     include/Command.h \
-    include/Errors/InvalidNumber.h \
-    include/Errors/InvalidOperand.h \
-    include/Errors/InvalidOperator.h \
+    include/Errors/InvalidNumberError.h \
+    include/Errors/InvalidOperandError.h \
+    include/Errors/InvalidOperatorError.h \
     include/Errors/StackEmptyError.h \
-    include/Errors/InvalidArgument.h \
     include/Errors/SyntaxError.h \
+    include/Errors/ZeroDivisionError.h \
     include/Expression.h \
     include/Functions/Functions.h \
     include/Functions/Operators.h \

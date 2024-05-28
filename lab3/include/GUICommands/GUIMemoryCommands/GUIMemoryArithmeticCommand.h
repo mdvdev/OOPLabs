@@ -12,10 +12,14 @@ private:
 public:
     GUIMemoryArithmeticCommand(Expression& savedExpr) : savedExpr(savedExpr) { }
     void execute() override {
+        if (savedExpr.getExpr() == "") return;
+
         Calculator calculator(std::make_shared<CalculatorEvalCommand>(savedExpr.getExpr()));
         LongFloat res = calculator.execute();
         LongFloat savedValue = savedExpr.getSavedValue();
+
         operation(savedValue, res);
+
         savedExpr.resetSavedValue();
         savedExpr.setSavedValue(savedValue);
     }

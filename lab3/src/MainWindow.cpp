@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(ui->addPushButton, &QPushButton::clicked, &inputWidgets.addPushButton, &GUI_Invoker::handleEvent);
     connect(ui->subtractPushButton, &QPushButton::clicked, &inputWidgets.subtractPushButton, &GUI_Invoker::handleEvent);
-    //connect(ui->multiplyPushButton, &QPushButton::clicked, &inputWidgets.multiplyPushButton, &GUI_Invoker::handleEvent);
-    //connect(ui->dividePushButton, &QPushButton::clicked, &inputWidgets.dividePushButton, &GUI_Invoker::handleEvent);
+    connect(ui->multiplyPushButton, &QPushButton::clicked, &inputWidgets.multiplyPushButton, &GUI_Invoker::handleEvent);
+    connect(ui->dividePushButton, &QPushButton::clicked, &inputWidgets.dividePushButton, &GUI_Invoker::handleEvent);
     connect(ui->equalPushButton, &QPushButton::clicked, &inputWidgets.equalPushButton, &GUI_Invoker::handleEvent);
 
     connect(ui->zeroPushButton, &QPushButton::clicked, &inputWidgets.zeroPushButton, &GUI_Invoker::handleEvent);
