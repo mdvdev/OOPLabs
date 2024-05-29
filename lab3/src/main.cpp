@@ -2,7 +2,6 @@
 
 #include <QApplication>
 #include <iostream>
-#include <sstream>
 
 #include "LongFloat.h"
 
