@@ -1,0 +1,9 @@
+digraph G {
+0 [shape="circle"label="7"];
+1 [shape="circle"label="3"];
+2 [shape="circle"label="21"];
+6 [shape="circle"label="30"];
+2->6;
+0->1;
+0->2;
+}
